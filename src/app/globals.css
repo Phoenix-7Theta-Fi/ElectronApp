@@ -3,21 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: 10 10 10;
+  --foreground: 237 237 237;
+  --muted: 23 23 23;
+  --border: 38 38 38;
+  --primary: 255 255 255;
+  --secondary: 163 163 163;
+  --accent: 64 64 64;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground antialiased min-h-screen;
 }
 
 @layer utilities {
@@ -25,3 +21,4 @@ body {
     text-wrap: balance;
   }
 }
+
