@@ -8,15 +8,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "electron-dev": "concurrently \"npm run dev\" \"electron .\"",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-build": "next build && electron-builder",
-    "electron-start": "electron ."
+    "electron-start": "electron .",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "build:migrations": "tsc src/db/migrate.ts --outDir dist/db"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-navigation-menu": "^1.2.6",
     "@radix-ui/react-scroll-area": "^1.2.4",
     "@radix-ui/react-separator": "^1.1.3",
+    "better-sqlite3": "^11.9.1",
     "clsx": "^2.1.1",
     "electron-is-dev": "^2.0.0",
     "next": "14.2.24",
@@ -25,6 +29,7 @@
     "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -48,9 +53,19 @@
       "target": "nsis"
     },
     "files": [
+      "dist/**/*",
       "electron/**/*",
-      ".next/**/*",
       "node_modules/**/*"
-    ]
+    ],
+    "extraFiles": [
+      {
+        "from": "electron/preload.js",
+        "to": "electron/preload.js"
+      }
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    }
   }
 }

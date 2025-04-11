@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/quick-add/page": "app/quick-add/page.js",
+  "/api/tasks/route": "app/api/tasks/route.js",
+  "/inbox/page": "app/inbox/page.js"
+}
